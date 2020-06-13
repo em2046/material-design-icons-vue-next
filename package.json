@@ -6,14 +6,16 @@
     "dev": "vite",
     "build": "vite build",
     "generate": "gulp --require ts-node/register/transpile-only",
-    "prettier": "prettier --write {src,build,tests}/**/*.{js,jsx,ts,tsx,css,vue}"
+    "prettier": "prettier --write {src,build,tasks}/**/*.{js,jsx,ts,tsx,css,vue}"
   },
   "dependencies": {
+    "@types/prettier": "^2.0.1",
     "material-design-icons": "^3.0.1",
     "vue": "^3.0.0-beta.14"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.6",
+    "@types/gulp-concat": "^0.0.32",
     "@types/gulp-rename": "^0.0.33",
     "@types/lodash": "^4.14.155",
     "@types/puppeteer": "^3.0.0",
@@ -21,6 +23,7 @@
     "@vue/compiler-sfc": "^3.0.0-beta.14",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
     "lodash": "^4.17.15",
     "prettier": "^2.0.5",

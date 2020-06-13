@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import MDI3DRotation from './icons/action/MDI3DRotation';
+import { MDI3DRotation } from '.';
 
 export default defineComponent({
   setup() {
