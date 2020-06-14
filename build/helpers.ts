@@ -22,3 +22,7 @@ export const iconCategories = [
 export function getComponentName(name: string) {
   return 'MDI' + upperFirst(camelCase(name.replace(/ic(.+)_24px/, '$1')));
 }
+
+export function getListName(name: string) {
+  return `List${upperFirst(name)}`;
+}

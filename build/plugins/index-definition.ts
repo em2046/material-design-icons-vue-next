@@ -1,5 +1,5 @@
 import through2 from 'through2';
-import categoryIndexTemplate from '../templates/category-index-template';
+import { categoryIndexTemplate } from '../templates/index-template';
 
 export function indexDefinition() {
   return through2.obj(async (chunk, enc, callback) => {

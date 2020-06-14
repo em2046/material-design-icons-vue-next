@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue';
-import { MDI3DRotation } from '.';
+import IconPanes from './views/IconPanes';
 
 export default defineComponent({
   setup() {
-    return () => <MDI3DRotation />;
+    return () => <IconPanes />;
   },
 });

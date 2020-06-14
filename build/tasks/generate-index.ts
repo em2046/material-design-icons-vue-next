@@ -5,7 +5,7 @@ import cancat from 'gulp-concat';
 import { iconCategories } from '../helpers';
 import { indexDefinition } from '../plugins/index-definition';
 import prettierFormat from '../plugins/prettier-format';
-import categoriesIndexTemplate from '../templates/categories-index-template';
+import { categoriesIndexTemplate } from '../templates/index-template';
 
 async function categoriesIndex() {
   let indexContent = iconCategories

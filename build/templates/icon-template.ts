@@ -1,4 +1,4 @@
-export default function iconTemplate(svg: string, name: string) {
+export function iconTemplate(svg: string, name: string) {
   return `import { defineComponent } from 'vue';
 import MDIcon from '../../components/MDIcon';
 

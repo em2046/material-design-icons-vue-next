@@ -1,7 +1,8 @@
 import puppeteer from 'puppeteer';
 import through2 from 'through2';
-import iconTemplate from '../templates/icon-template';
+import { iconTemplate } from '../templates/icon-template';
 import { getComponentName } from '../helpers';
+import rename from 'gulp-rename';
 
 async function svgConvert(page: puppeteer.Page, xml: string): Promise<string> {
   return await page.evaluate((xml) => {
@@ -26,5 +27,23 @@ export function iconDefinition(page: puppeteer.Page) {
     let vueComponent = iconTemplate(inlineXML, getComponentName(fileName));
     chunk.contents = Buffer.from(vueComponent);
     callback(null, chunk);
+  });
+}
+
+export function iconRename() {
+  return rename((p: rename.ParsedPath) => {
+    const baseName = p.basename;
+
+    if (!baseName) {
+      return;
+    }
+
+    const componentName = `${getComponentName(baseName)}`;
+
+    return {
+      dirname: '/',
+      basename: componentName,
+      extname: '.tsx',
+    };
   });
 }

@@ -2,8 +2,7 @@ import path from 'path';
 import { dest, src } from 'gulp';
 import materialDesignIcons from 'material-design-icons';
 import puppeteer from 'puppeteer';
-import { iconDefinition } from '../plugins/icon-definition';
-import { iconRename } from '../plugins/icon-rename';
+import { iconDefinition, iconRename } from '../plugins/icon-definition';
 import prettierFormat from '../plugins/prettier-format';
 import { iconCategories } from '../helpers';
 

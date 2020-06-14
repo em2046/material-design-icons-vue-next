@@ -4,3 +4,5 @@ dist
 *.local
 .idea
 /src/icons/
+/src/views/icons/
+/src/views/IconPanes.tsx
