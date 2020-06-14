@@ -4,9 +4,7 @@ import materialDesignIcons from 'material-design-icons';
 import puppeteer from 'puppeteer';
 import { iconDefinition, iconRename } from '../plugins/icon-definition';
 import prettierFormat from '../plugins/prettier-format';
-import { iconCategories } from '../helpers';
-
-const svgSelector = 'svg/production/**24px.svg';
+import { iconCategories, svgSelector } from '../helpers';
 
 export default async function generateIcons() {
   const browser = await puppeteer.launch();
@@ -19,7 +17,7 @@ export default async function generateIcons() {
       src(svgFullSelector)
         .pipe(iconDefinition(page))
         .pipe(iconRename())
-        .pipe(prettierFormat({ parser: 'typescript' }))
+        .pipe(prettierFormat())
         .pipe(dest(`src/icons/${iconCategory}`))
         .on('end', resolve);
     });

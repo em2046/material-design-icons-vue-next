@@ -1,7 +1,11 @@
-import { getListName } from '../helpers';
+import { getComponentName, getDisplayName, getListName } from '../helpers';
+import { upperFirst } from 'lodash';
 
 export function itemTemplate(category: string, fileName: string) {
-  return `<${category}.${fileName} />`;
+  return `<li>
+  <${category}.${getComponentName(fileName)} />
+  <span class="icon-name">${getDisplayName(fileName)}</span>
+</li>`;
 }
 
 export function listTemplate(category: string, items: string) {
@@ -12,7 +16,10 @@ import * as ${category} from '../../icons/${category}';
 export default defineComponent({
   name: '${listName}',
   setup() {
-    return () => (<div>${items}</div>);
+    return () => (<div class="icon-pane">
+  <div class="icon-category">${upperFirst(category)}</div>
+  <ul>${items}</ul>
+</div>);
   },
 });
 `;
@@ -35,7 +42,7 @@ import * as panes from './icons';
 export default defineComponent({
   name: 'IconPanes',
   setup() {
-    return () => (<div>${content}</div>);
+    return () => (<div class="icon-panes">${content}</div>);
   },
 });
 `;

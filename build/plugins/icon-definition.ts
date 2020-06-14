@@ -24,7 +24,7 @@ export function iconDefinition(page: puppeteer.Page) {
     const fileName = chunk.stem;
     const xml = chunk.contents.toString(enc);
     let inlineXML = await svgConvert(page, xml);
-    let vueComponent = iconTemplate(inlineXML, getComponentName(fileName));
+    let vueComponent = iconTemplate(inlineXML, fileName);
     chunk.contents = Buffer.from(vueComponent);
     callback(null, chunk);
   });

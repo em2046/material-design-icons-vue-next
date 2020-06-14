@@ -1,4 +1,4 @@
-import { iconCategories } from '../helpers';
+import { format, iconCategories, svgSelector } from '../helpers';
 import { dest, src } from 'gulp';
 import cancat from 'gulp-concat';
 import prettierFormat from '../plugins/prettier-format';
@@ -14,6 +14,28 @@ import {
 } from '../templates/demo-template';
 import fs from 'fs';
 import path from 'path';
+import materialDesignIcons from 'material-design-icons';
+
+async function list() {
+  const iconPath = materialDesignIcons.STATIC_PATH;
+
+  let processes = iconCategories.map((iconCategory) => {
+    return new Promise((resolve) => {
+      const svgFullSelector = path.join(iconPath, iconCategory, svgSelector);
+
+      src(svgFullSelector)
+        .pipe(itemDefinition(iconCategory))
+        .pipe(cancat(`${iconCategory}.tsx`))
+        .pipe(listDefinition(iconCategory))
+        .pipe(prettierFormat())
+        .pipe(listRename())
+        .pipe(dest('src/views/icons'))
+        .on('end', resolve);
+    });
+  });
+
+  await Promise.all(processes);
+}
 
 async function index() {
   let indexContent = iconCategories
@@ -24,27 +46,8 @@ async function index() {
     .concat('\n');
   fs.writeFileSync(
     path.join(__dirname, '../../src/views/icons/index.ts'),
-    indexContent
+    await format(indexContent)
   );
-}
-
-async function list() {
-  let processes = iconCategories.map((iconCategory) => {
-    return new Promise((resolve) => {
-      let categoryPath = `src/icons/${iconCategory}`;
-
-      src(`${categoryPath}/**.tsx`)
-        .pipe(itemDefinition(iconCategory))
-        .pipe(cancat(`${iconCategory}.tsx`))
-        .pipe(listDefinition(iconCategory))
-        .pipe(prettierFormat({ parser: 'typescript' }))
-        .pipe(listRename())
-        .pipe(dest('src/views/icons'))
-        .on('end', resolve);
-    });
-  });
-
-  await Promise.all(processes);
 }
 
 async function panes() {
@@ -54,7 +57,10 @@ async function panes() {
     })
     .join('\n');
   let demo = panesTemplate(panesContent);
-  fs.writeFileSync(path.join(__dirname, '../../src/views/IconPanes.tsx'), demo);
+  fs.writeFileSync(
+    path.join(__dirname, '../../src/views/IconPanes.tsx'),
+    await format(demo)
+  );
 }
 
 export default async function generateDemo() {

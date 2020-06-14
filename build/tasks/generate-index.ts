@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { dest, src } from 'gulp';
 import cancat from 'gulp-concat';
-import { iconCategories } from '../helpers';
+import { format, iconCategories } from '../helpers';
 import { indexDefinition } from '../plugins/index-definition';
 import prettierFormat from '../plugins/prettier-format';
 import { categoriesIndexTemplate } from '../templates/index-template';
@@ -16,7 +16,7 @@ async function categoriesIndex() {
     .concat('\n');
   fs.writeFileSync(
     path.join(__dirname, '../../src/icons/index.ts'),
-    indexContent
+    await format(indexContent)
   );
 }
 
@@ -27,7 +27,7 @@ async function categoryIndex() {
       src(`${categoryPath}/**.tsx`)
         .pipe(indexDefinition())
         .pipe(cancat('index.ts'))
-        .pipe(prettierFormat({ parser: 'typescript' }))
+        .pipe(prettierFormat())
         .pipe(dest(categoryPath))
         .on('end', resolve);
     });
