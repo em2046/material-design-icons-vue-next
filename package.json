@@ -1,12 +1,12 @@
 {
   "name": "@em2046/material-design-icons-vue-next",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "license": "MIT",
   "files": [
     "dist",
     "src"
   ],
-  "module": "dist/index.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "dev": "vite --sw",
     "build:demo": "vite build",
