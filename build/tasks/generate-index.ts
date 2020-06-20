@@ -8,7 +8,7 @@ import prettierFormat from '../plugins/prettier-format';
 import { categoriesIndexTemplate } from '../templates/index-template';
 
 async function categoriesIndex() {
-  let indexContent = iconCategories
+  const indexContent = iconCategories
     .map((category) => {
       return categoriesIndexTemplate(category);
     })
@@ -21,9 +21,9 @@ async function categoriesIndex() {
 }
 
 async function categoryIndex() {
-  let processes = iconCategories.map((iconCategory) => {
+  const processes = iconCategories.map((iconCategory) => {
     return new Promise((resolve) => {
-      let categoryPath = `src/icons/${iconCategory}`;
+      const categoryPath = `src/icons/${iconCategory}`;
       src(`${categoryPath}/**.tsx`)
         .pipe(indexDefinition())
         .pipe(cancat('index.ts'))

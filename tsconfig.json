@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "target": "ES6",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "jsxFactory": "vueJsxCompat",
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "esModuleInterop": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "jsx": "preserve"
+    "strict": true,
+    "target": "ES6"
   },
   "exclude": ["node_modules"]
 }

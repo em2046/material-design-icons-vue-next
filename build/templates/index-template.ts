@@ -3,5 +3,7 @@ export function categoriesIndexTemplate(category: string) {
 }
 
 export function categoryIndexTemplate(componentName: string) {
-  return `export { default as ${componentName} } from './${componentName}';`;
+  return `import ${componentName} from './${componentName}';
+export { ${componentName} };
+`;
 }

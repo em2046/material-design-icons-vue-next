@@ -19,7 +19,7 @@ import materialDesignIcons from 'material-design-icons';
 async function list() {
   const iconPath = materialDesignIcons.STATIC_PATH;
 
-  let processes = iconCategories.map((iconCategory) => {
+  const processes = iconCategories.map((iconCategory) => {
     return new Promise((resolve) => {
       const svgFullSelector = path.join(iconPath, iconCategory, svgSelector);
 
@@ -38,7 +38,7 @@ async function list() {
 }
 
 async function index() {
-  let indexContent = iconCategories
+  const indexContent = iconCategories
     .map((category) => {
       return indexTemplate(category);
     })
@@ -51,12 +51,12 @@ async function index() {
 }
 
 async function panes() {
-  let panesContent = iconCategories
+  const panesContent = iconCategories
     .map((iconCategory) => {
       return paneTemplate(iconCategory);
     })
     .join('\n');
-  let demo = panesTemplate(panesContent);
+  const demo = panesTemplate(panesContent);
   fs.writeFileSync(
     path.join(__dirname, '../../src/views/IconPanes.tsx'),
     await format(demo)

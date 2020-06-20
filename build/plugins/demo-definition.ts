@@ -13,7 +13,7 @@ export function itemDefinition(iconCategory: string) {
 
 export function listDefinition(iconCategory: string) {
   return through2.obj(async (chunk, enc, callback) => {
-    let items = chunk.contents;
+    const items = chunk.contents;
     chunk.contents = Buffer.from(listTemplate(iconCategory, items));
     callback(null, chunk);
   });
