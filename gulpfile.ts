@@ -1,15 +1,19 @@
-import { parallel, series } from 'gulp';
-import cleanDirectories from './build/tasks/clean-directories';
+import generateDemo from './build/tasks/generate-demo';
 import generateIcons from './build/tasks/generate-icons';
 import generateIndex from './build/tasks/generate-index';
-import generateDemo from './build/tasks/generate-demo';
-import { packageUp } from './build/tasks/package-up';
-import style from './build/tasks/style';
+import { style } from './build/tasks/style';
+import { apiExtractor } from './build/tasks/api-extractor';
+import { bundleScript } from './build/tasks/bundle-script';
+import { cleanDist, cleanSrc } from './build/tasks/clean-directories';
+import { parallel, series } from 'gulp';
+import { rollupDts } from './build/tasks/rollup-dts';
 
-export default series(
-  cleanDirectories,
+const icon = series(
+  cleanSrc,
   generateIcons,
   parallel(generateIndex, generateDemo)
 );
 
-export { packageUp, style };
+const lib = series(cleanDist, rollupDts, apiExtractor, bundleScript);
+
+export { icon, style, lib };

@@ -1,20 +1,21 @@
 {
   "name": "@em2046/material-design-icons-vue-next",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "license": "MIT",
   "files": [
     "dist",
     "src"
   ],
-  "module": "dist/index.esm.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite --https",
+    "gulp:icon": "gulp --require ts-node/register/transpile-only icon",
+    "gulp:style": "gulp --require ts-node/register/transpile-only style",
+    "gulp:lib": "gulp --require ts-node/register/transpile-only lib",
+    "build": "yarn gulp:icon && yarn gulp:style && yarn gulp:lib",
     "build:demo": "vite build",
-    "build:style": "gulp --require ts-node/register/transpile-only style",
-    "build:lib": "rollup --config build/rollup/rollup.config.es.js -m",
-    "build": "yarn build:style && yarn build:lib",
-    "generate": "gulp --require ts-node/register/transpile-only",
-    "package-up": "gulp packageUp --require ts-node/register/transpile-only",
     "prettier": "prettier --write {src,build,tasks}/**/*.{js,jsx,ts,tsx,css,vue}",
     "prepublishOnly": "yarn prettier && yarn build"
   },
@@ -22,6 +23,7 @@
     "vue": "^3.0.0-beta.18"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.9.2",
     "@rollup/plugin-typescript": "^5.0.1",
     "@types/gulp": "^4.0.6",
     "@types/gulp-concat": "^0.0.32",

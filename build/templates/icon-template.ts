@@ -1,14 +1,14 @@
-import { getComponentName, getClassName } from '../helpers';
+import { getClassName, getComponentName } from '../helpers';
 
 export function iconTemplate(svg: string, name: string) {
   const componentName = getComponentName(name);
   const className = getClassName(name);
 
-  return `import { defineComponent } from 'vue';
+  return `import { VNodeProps } from 'vue';
 import { vueJsxCompat } from '../../vue-jsx-compat';
-import MDIcon from '../../components/MDIcon';
+import { MDIcon } from '../../components/MDIcon';
 
-export default defineComponent({
+let ${componentName}Impl = {
   name: '${componentName}',
   setup() {
     return () => {
@@ -19,6 +19,12 @@ export default defineComponent({
       );
     };
   },
-});
+};
+
+export const ${componentName} = (${componentName}Impl as any) as {
+  new (): {
+    $props: VNodeProps;
+  }
+}
 `;
 }

@@ -3,8 +3,8 @@ import { dest, src } from 'gulp';
 import cancat from 'gulp-concat';
 import prettierFormat from '../plugins/prettier-format';
 import {
-  listDefinition,
   itemDefinition,
+  listDefinition,
   listRename,
 } from '../plugins/demo-definition';
 import {

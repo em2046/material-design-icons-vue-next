@@ -6,3 +6,4 @@ dist
 /src/icons/
 /src/views/icons/
 /src/views/IconPanes.tsx
+/temp/

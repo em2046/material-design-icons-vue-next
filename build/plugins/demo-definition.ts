@@ -1,5 +1,5 @@
 import through2 from 'through2';
-import { listTemplate, itemTemplate } from '../templates/demo-template';
+import { itemTemplate, listTemplate } from '../templates/demo-template';
 import rename from 'gulp-rename';
 import { getListName } from '../helpers';
 
