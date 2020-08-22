@@ -1,4 +1,5 @@
-import { SetupContext, VNodeProps } from 'vue';
+import { HTMLAttributes, SetupContext, VNodeProps } from 'vue';
+import { VueComponentProps } from '../types/vue-component';
 import { vueJsxCompat } from '../vue-jsx-compat';
 
 export interface MDIconProps {}
@@ -12,8 +13,8 @@ let MDIconImpl = {
   },
 };
 
-export const MDIcon = (MDIconImpl as any) as {
+export const MDIcon = (MDIconImpl as unknown) as {
   new (): {
-    $props: VNodeProps & MDIconProps;
+    $props: VNodeProps & MDIconProps & HTMLAttributes & VueComponentProps;
   };
 };
