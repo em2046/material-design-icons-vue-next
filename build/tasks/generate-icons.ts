@@ -45,7 +45,7 @@ export default async function generateIcons() {
         })
         .on('end', () => {
           Promise.all(subProcesses).then(() => {
-            resolve();
+            resolve(null);
           });
         });
     });
